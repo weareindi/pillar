@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        {% include 'common/html-head' ignore missing %}
+    </head>
+    <body>
+        {% include 'common/body-head' ignore missing %}
+
+        {% block body %}{% endblock %}
+
+        {% include 'common/body-footer' ignore missing %}
+    </body>
+</html>

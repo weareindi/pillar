@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+// Autoload
+require 'vendor/autoload.php';
+
+// Prepare Packages
+use Symfony\Component\Dotenv\Dotenv;
+
+// Prepare App Classes
+use PillarCore\App\Console;
+
+// Register and load .env
+$dotenv = new Dotenv();
+$dotenv->load(__DIR__ . '/.env');
+
+// Run Console
+new Console([
+    // Add custom commands here
+    new \Pillar\ConsoleCommands\ExampleCommand()
+]);
