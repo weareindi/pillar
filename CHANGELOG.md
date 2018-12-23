@@ -1,6 +1,24 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2018-12-23
+### Added
+- Re-added Export command. `php pillar export help` for more info
+- Basic example template with 'alternative' data
+
+### Change
+- Changed required `.env` keys for updated export command.
+    - From: `EXPORT_PATTERNS_DEST` to `EXPORT_LIBRARY_DEST`
+    - From: `EXPORT_DIRECTORY_SRC` to `EXPORT_ASSETS_SRC`
+    - From: `EXPORT_DIRECTORY_DEST` to `EXPORT_ASSETS_DEST`
+- Export command now takes options including `--library` and/or `--assets`.
+
+## [1.0.1-beta] - 2018-12-23
+### Change
+- Revert core naming back to Pillar rather than PillarCore
+- Remove PSR-4 for 'Pillar' in base
+- Remove namespacing from custom console commands
+
 ## [1.0.0-beta] - 2018-12-22
 ### Change
 - Major overhaul of Pillar Core codebase. Tests indicate the platform is now twice as fast compared to `0.6.3`

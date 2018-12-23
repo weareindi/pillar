@@ -8,9 +8,15 @@ Build your TWIG powered pattern library
 
 ## Installation
 
+### Via Composer
+- Execute `composer create-project weareindi/pillar {{ your destination directory }}`
+
+### Manually
 - Download this package manually.
 - Extract to your desired working directory.
 - Run `composer install` to get all the required dependencies (including Pillar-Core).
+
+## Loading
 
 Feel free to boot the PHP built-in server using the command:  
 `php pillar server`  
