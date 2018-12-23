@@ -5,8 +5,6 @@
  * Ensure to add this command to your `projectroot/commands.php` file
  */
 
-namespace Pillar\ConsoleCommands;
-
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
