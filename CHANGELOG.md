@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2018-12-29
+### Bugfix
+- Fixed 'undefined index' issue that was preventing the display of patterns under certain situations (eg. pattern isolation)
+
 ## [1.0.1] - 2018-12-23
 ### Added
 - Re-added Export command. `php pillar export help` for more info
