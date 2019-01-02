@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2019-01-02
+### Added
+- Data can now be broken out across multiple `.json` files rather than a single `data.json` file.
+### Bugfix
+- Fixed issue where pages with same directory name and depth as patterns would use pattern data instead of page data
+
 ## [1.0.2] - 2018-12-29
 ### Bugfix
 - Fixed 'undefined index' issue that was preventing the display of patterns under certain situations (eg. pattern isolation)
