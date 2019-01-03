@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2019-01-03
+### Bugfix
+- Fixed issue with data being merged at incorrect level
+
 ## [1.1.0] - 2019-01-02
 ### Added
 - Data can now be broken out across multiple `.json` files rather than a single `data.json` file.
