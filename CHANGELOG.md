@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2019-01-05
+### Bugfix
+- Fixed issue with data not merging recursively
+
 ## [1.1.1] - 2019-01-03
 ### Bugfix
 - Fixed issue with data being merged at incorrect level
