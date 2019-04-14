@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2019-04-14
+### Added
+- Added Template Generate command. Usage: `php pillar generate {{ template/name }}`
+
 ## [1.1.2] - 2019-01-05
 ### Bugfix
 - Fixed issue with data not merging recursively
