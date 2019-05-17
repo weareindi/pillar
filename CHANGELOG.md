@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.1] - 2019-05-17
+### Change
+- Amended `.env.example` to include more relevant comments
+
 ## [1.2.0] - 2019-04-14
 ### Added
 - Added Template Generate command. Usage: `php pillar generate {{ template/name }}`
