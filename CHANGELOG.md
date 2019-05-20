@@ -1,8 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.2.1] - 2019-05-17
+## [1.2.1] - 2019-05-20
+### Bugfix
+- Fixed custom filters/functions not working on isolated templates
+
 ### Change
+- Removed unnecessary slash from ExampleFunction
+- Amended server commands execution method
 - Amended `.env.example` to include more relevant comments
 
 ## [1.2.0] - 2019-04-14

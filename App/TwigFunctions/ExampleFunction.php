@@ -11,7 +11,7 @@ class ExampleFunction extends Twig_Extension {
      */
     public function getFunctions() {
         return array(
-            new \Twig_Function('exampleFunction', array($this, 'func')),
+            new Twig_Function('exampleFunction', array($this, 'func')),
         );
     }
 
