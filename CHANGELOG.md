@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.2] - 2019-07-16
+### Added
+- Text align render frame switch
+
 ## [1.2.1] - 2019-05-20
 ### Bugfix
 - Fixed custom filters/functions not working on isolated templates
