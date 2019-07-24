@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2019-07-24
+### Added
+- Allow for alternative page data sets
+
 ## [1.2.2] - 2019-07-16
 ### Added
 - Text align render frame switch
