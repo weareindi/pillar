@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2019-09-01
+### Added
+- Added HTML page export
+
 ## [1.3.0] - 2019-07-24
 ### Added
 - Allow for alternative page data sets
