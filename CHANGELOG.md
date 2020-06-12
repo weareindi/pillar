@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2020-06-12
+### Added
+- Add TWIG global context support. See `/App/TwigGlobalContextData`
+
 ## [1.4.0] - 2019-09-01
 ### Added
 - Added HTML page export

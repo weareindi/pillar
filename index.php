@@ -16,6 +16,10 @@ $dotenv->load(__DIR__ . '/.env');
 // Register App
 Pillar::register();
 
+// Add global context data
+include 'App/TwigGlobalContextData/TwigGlobalContextData.php';
+Pillar::addTwigGlobalContextData(new TwigGlobalContextData());
+
 // Register Custom Twig Filters & Functions
 include 'App/TwigFilters/ExampleFilter.php';
 Pillar::addTwigExtension(new ExampleFilter());
