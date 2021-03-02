@@ -11,7 +11,7 @@ use Symfony\Component\Dotenv\Dotenv;
 use Pillar\App\Console;
 
 // Register and load .env
-$dotenv = new Dotenv();
+$dotenv = new Dotenv(true);
 $dotenv->load(__DIR__ . '/.env');
 
 // Include custom commands

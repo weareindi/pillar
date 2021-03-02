@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.8.1] - 2021-03-02
+### Bugfix
+- Allow for `getenv` function. Symfony/Dotenv 5.x made some amends so we're required to pass true to the Dotenv constructor.
+
 ## [1.8.0] - 2021-03-02
 ### Change
 - Updates for Twig 3.x

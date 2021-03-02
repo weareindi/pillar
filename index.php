@@ -10,7 +10,7 @@ use Symfony\Component\Dotenv\Dotenv;
 use Pillar\App\App as Pillar;
 
 // Register and load .env
-$dotenv = new Dotenv();
+$dotenv = new Dotenv(true);
 $dotenv->load(__DIR__ . '/.env');
 
 // Register App
