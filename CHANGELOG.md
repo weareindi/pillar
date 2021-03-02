@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.7.0] - 2021-03-02
+### Change
+- Updated pillar-core build tools
+- Updated packages to latest throughout Pillar ecosystem
+- Updated core built tools
+### Added
+- Added `php pillar gulp` command
+
 ## [1.5.0] - 2020-06-12
 ### Added
 - Add TWIG global context support. See `/App/TwigGlobalContextData`
