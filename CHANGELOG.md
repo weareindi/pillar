@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.8.0] - 2021-03-02
+### Change
+- Updates for Twig 3.x
+### Bugfix
+- Fixes for Twig 3.x
+
 ## [1.7.0] - 2021-03-02
 ### Change
 - Updated pillar-core build tools

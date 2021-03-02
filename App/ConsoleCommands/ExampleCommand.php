@@ -15,6 +15,9 @@ class ExampleCommand extends Command {
     protected function configure() {
         $this->setName('example');
 		$this->setDescription('This is an example custom console command');
+
+        // we're done now
+        return Command::SUCCESS;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {

@@ -2,16 +2,19 @@
 
 /**
  * This is an example Twig Filter
- * Docs: https://twig.symfony.com/doc/2.x/advanced.html#creating-an-extension
+ * Docs: https://twig.symfony.com/doc/3.x/advanced.html#creating-an-extension
  */
 
-class ExampleFilter extends Twig_Extension {
+use Twig\Extension\AbstractExtension as TwigAbstractExtension;
+use Twig\TwigFilter;
+
+class ExampleFilter extends TwigExtension {
     /**
      * Prepare Filter
      */
     public function getFilters() {
         return array(
-            new Twig_Filter('exampleFilter', array($this, 'filter')),
+            new TwigFilter('exampleFilter', array($this, 'filter')),
         );
     }
 
