@@ -1,12 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.9.1] - 2021-04-03
+### Added
+- Add image placeholder route. - You can now generate images using the URI: `/image/1280x800` or `/image/1280x800/f00`
+### Change   
+- Changed 'sitemap' route to 'pages'
+
 ## [1.8.1] - 2021-03-02
 ### Bugfix
 - Allow for `getenv` function. Symfony/Dotenv 5.x made some amends so we're required to pass true to the Dotenv constructor.
 
-## [1.8.0] - 2021-03-02
-### Change
+## [1.8.0] - 2021-03-02   
+### Change   
 - Updates for Twig 3.x
 ### Bugfix
 - Fixes for Twig 3.x
