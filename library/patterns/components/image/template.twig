@@ -1,0 +1,88 @@
+{% set uid = random() %}
+{% set allowedsizes = allowedsizes is defined and allowedsizes ? allowedsizes : [
+    'custom-small',
+    'custom-medium',
+    'custom-large',
+    'custom-ultra'
+] %}
+{% set breakpoints = [] %}
+{% if sizes['custom-small'].url is defined and sizes['custom-small'].url and 'custom-small' in allowedsizes %}
+    {% set breakpoints = breakpoints|merge([
+        {
+            width: sizes['custom-small'].width,
+            height: sizes['custom-small'].height,
+            url: sizes['custom-small'].url,
+            ratio: (sizes['custom-small'].height / sizes['custom-small'].width) * 100
+        }
+    ]) %}
+{% else %}
+    {% set breakpoints = breakpoints|merge([
+        {
+            width: width,
+            height: height,
+            url: url,
+            ratio: (height / width) * 100
+        }
+    ]) %}
+{% endif %}
+{% if sizes['custom-medium'].url is defined and sizes['custom-medium'].url and 'custom-medium' in allowedsizes %}
+    {% set breakpoints = breakpoints|merge([
+        {
+            minwidth: '40em',
+            width: sizes['custom-medium'].width,
+            height: sizes['custom-medium'].height,
+            url: sizes['custom-medium'].url,
+            ratio: (sizes['custom-medium'].height / sizes['custom-medium'].width) * 100
+        }
+    ]) %}
+{% endif %}
+{% if sizes['custom-large'].url is defined and sizes['custom-large'].url and 'custom-large' in allowedsizes %}
+    {% set breakpoints = breakpoints|merge([
+        {
+            minwidth: '80em',
+            width: sizes['custom-large'].width,
+            height: sizes['custom-large'].height,
+            url: sizes['custom-large'].url,
+            ratio: (sizes['custom-large'].height / sizes['custom-large'].width) * 100
+        }
+    ]) %}
+{% endif %}
+{% if sizes['custom-ultra'].url is defined and sizes['custom-ultra'].url and 'custom-ultra' in allowedsizes %}
+    {% set breakpoints = breakpoints|merge([
+        {
+            minwidth: '160em',
+            width: sizes['custom-ultra'].width,
+            height: sizes['custom-ultra'].height,
+            url: sizes['custom-ultra'].url,
+            ratio: (sizes['custom-ultra'].height / sizes['custom-ultra'].width) * 100
+        }
+    ]) %}
+{% endif %}
+<div class="c-image c-image--{{ uid|raw }} {{ cover is defined and cover ? 'c-image--cover' : '' }}">
+    <div class="c-image__body">
+        {% if url is defined and url %}
+        <div class="c-image__image" offload='{{ breakpoints|json_encode }}'></div>
+
+            <style media="screen">
+            {% for breakpoint in breakpoints %}
+                {% if breakpoint.minwidth is not defined %}
+                    .c-image--{{ uid|raw }} .c-image__image {
+                        padding-top: {{ breakpoint.ratio|raw }}%;
+                    }
+                {% else %}
+                    @media (min-width: {{ breakpoint.minwidth|raw }}) {
+                        .c-image--{{ uid|raw }} .c-image__image {
+                            padding-top: {{ breakpoint.ratio|raw }}%;
+                        }
+                    }
+                {% endif %}
+            {% endfor %}
+            </style>
+
+            {% if gradient is defined and gradient %}
+            <span class="c-image__gradient"></span>
+            {% endif %}
+
+        {% endif %}
+    </div>
+</div>

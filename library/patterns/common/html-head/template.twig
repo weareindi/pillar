@@ -1,3 +1,18 @@
 {# Anthing you want to appear in the head; before the closing head tag #}
 <meta charset="utf-8">
-<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+
+<!--[if lt IE 9]>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+<![endif]-->
+
+<style>{{ source('/_assets/css/preload.css', ignore_missing = true) }}</style>
+
+<noscript>
+    <link rel="stylesheet" href="{{ theme.link }}/_assets/css/core.css?v={{ version }}">
+    <link rel="stylesheet" href="{{ theme.link }}/_assets/css/print.css?v={{ version }}" media="print">
+</noscript>
+
+{# `wp_head` is used by Timber to populate Timber powered WordPress Themes #}
+{{ wp_head }}
