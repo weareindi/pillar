@@ -1,0 +1,19 @@
+/* stylelint-disable no-invalid-position-at-import-rule */
+
+// Uses
+@use "sass:math";
+
+// bootstrap
+@import 'bootstrap';
+
+// Print styles only
+// Best practice is it let your site print like a word document. Greyscale and mainly text.
+
+// Import your library specific print scss files here.
+// To be more specific/dry you would import all individual _print.scss styles here but it can get tedious so I've implemented globbing.
+// Rather than glob a global directory, we glob a bit more specifically in sequential order of cascade importance
+// eg. @import '../../library/patterns/components/**/_print.scss'
+// eg. @import '../../library/patterns/sections/**/_print.scss'
+// eg. @import '../../library/pages/**/_print.scss'
+
+@import '../../library/patterns/components/**/_print.scss';

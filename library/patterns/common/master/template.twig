@@ -3,7 +3,7 @@
     <head>
         {% include 'common/html-head' ignore missing %}
     </head>
-    <body>
+    <body class="page {% block classes %}{% endblock %}">
         {% include 'common/body-head' ignore missing %}
 
         {% block body %}{% endblock %}

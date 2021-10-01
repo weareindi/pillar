@@ -1,0 +1,31 @@
+/* stylelint-disable no-invalid-position-at-import-rule */
+
+// Uses
+@use "sass:math";
+
+// bootstrap
+@import 'bootstrap';
+
+// Preload
+@import 'preload/reset';
+
+// Preload styles only
+// This aim of this stylesheet is to ensure the data within your site is accessible and coherant without any bells or whistles of modern CSS properties.
+// No images.
+// No custom fonts.
+// Just layout and colours using properties all browsers understand.
+
+// This is your base. This is embedded directly into the html-head template so the browser doesn't need to load another file (This is what gives the user the perception of speed).
+// We use properties all browsers understand to deliver the data within your site in a coherant manner.
+// We don't use flex or css grid here. We don't use calc(). We don't use styles that rely on javascript. Think IE < 9 and you'll be on the right track.
+// We are not nessasarily catering for old IE but the benefits of developing with that mindset are what give us those 100% Lighthouse/PageSpeed scores and improve accessibility.
+// We simply deliver a very basic layout that sort of resembles the all bells and whistle version that's delivered if the browser passes our javascript tests and loads our 'enhanced' styles.
+
+// Import your library specific preload scss files here.
+// To be more specific/dry you would import all individual _preload.scss styles here but it can get tedious so I've implemented globbing.
+// Rather than glob a global directory, we glob a bit more specifically in sequential order of cascade importance
+// eg. @import '../../library/patterns/components/**/_preload.scss'
+// eg. @import '../../library/patterns/sections/**/_preload.scss'
+// eg. @import '../../library/pages/**/_preload.scss'
+
+@import '../../library/patterns/components/**/_preload.scss';
