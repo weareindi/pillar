@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.9.2 - 1.9.5] - 2021-10-01
+## [1.9.2 - 1.9.6] - 2021-10-01
 ### Fixed
 - Update filters, functions, and global context classes.
 - Core Image Controller: hex2rgb conversion
