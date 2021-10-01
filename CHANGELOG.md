@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.9.2 - 1.9.5] - 2021-10-01
+### Fixed
+- Update filters, functions, and global context classes.
+- Core Image Controller: hex2rgb conversion
+### Added
+- Template Boilerplates. Used in combination with `pillar generate` to pre-populate new patterns.
+
 ## [1.9.1] - 2021-04-03
 ### Added
 - Add image placeholder route. - You can now generate images using the URI: `/image/1280x800` or `/image/1280x800/f00`

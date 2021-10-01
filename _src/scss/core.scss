@@ -1,0 +1,26 @@
+/* stylelint-disable no-invalid-position-at-import-rule */
+
+// Uses
+@use "sass:math";
+
+// bootstrap
+@import 'bootstrap';
+
+// The core styles are just as it sounds, These core styles work hand in hand with the preload styles.
+// We're catering for the same level of browser compatability as the preload styles define, only now we're displaying images.
+// This stylesheet should be quite light in that regard as most of the legwork happenes in preload.
+
+// Just to reiterate from the preload notes; This aim of this stylesheet is to ensure the data within your site is accessible and coherant without any bells or whistles of modern CSS properties.
+// We use properties all browsers understand to deliver the data within your site in a coherant manner.
+// We don't use flex or css grid here. We don't use calc(). We don't use styles that rely on javascript. Think IE < 9 and you'll be on the right track.
+// We are not nessasarily catering for old IE but the benefits of developing with that mindset are what give us those 100% Lighthouse/PageSpeed scores and improve accessibility.
+// We simply deliver a very basic layout that sort of resembles the all bells and whistle version that's delivered if the browser passes our javascript tests and loads our 'enhanced' styles.
+
+// Import your library specific core scss files here.
+// To be more specific/dry you would import all individual _core.scss styles here but it can get tedious so I've implemented globbing.
+// Rather than glob a global directory, we glob a bit more specifically in sequential order of cascade importance
+// eg. @import '../../library/patterns/components/**/_core.scss'
+// eg. @import '../../library/patterns/sections/**/_core.scss'
+// eg. @import '../../library/pages/**/_core.scss'
+
+@import '../../library/patterns/components/**/_core.scss';

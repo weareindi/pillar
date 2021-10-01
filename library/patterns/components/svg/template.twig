@@ -1,0 +1,8 @@
+{% set svgs = svgcollection() %}
+{% if svg is defined and svgs[svg] %}
+<{{ element ? element : 'span' }} class="c-svg {{ svg ? 'c-svg--' ~ svg : '' }} {{ color is defined ? 'c-svg--color--' ~ color : '' }}">
+    <span class="c-svg__image c-svg__image--svg">
+        {{ source(svgs[svg], ignore_missing = true) }}
+    </span>
+</{{ element ? element : 'span' }}>
+{% endif %}

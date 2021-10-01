@@ -2,6 +2,9 @@
 
 class TwigGlobalContextData {
     function __construct() {
-        //$this->example = 'Example';
+        $this->site = [
+            'link' => '#',
+            'admin_url' => '/'
+        ];
     }
 }

@@ -1,0 +1,35 @@
+.c-image {}
+
+.c-image--cover.c-image--cover {
+    .c-image__body,
+    .c-image__image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .c-image__image {
+        padding-top: 0 !important;
+    }
+}
+
+.c-image__body {
+    position: relative;
+}
+
+.c-image__image {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.c-image__gradient {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(45deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+}

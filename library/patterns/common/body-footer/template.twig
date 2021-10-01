@@ -1,1 +1,21 @@
 {# Anthing you want to appear before the closing body tag #}
+
+{# `wp_footer` is used by Timber to populate Timber powered WordPress themes #}
+{{ wp_footer }}
+
+{# Project Scripts #}
+<script>
+    {# Register Theme Directory Variable #}
+    window.themeDir = '{{ theme.link }}';
+    window.themeVersion = '{{ version }}';
+
+    {# Inline Cut The Mustard Script #}
+    {{ source('/_assets/js/mustard.js', ignore_missing = true) }}
+
+    {# Register service worker #}
+    if (navigator.serviceWorker) {
+        navigator.serviceWorker.register('/sw.js', {
+            scope: './'
+        });
+    }
+</script>

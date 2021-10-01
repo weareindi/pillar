@@ -1,0 +1,35 @@
+/* stylelint-disable no-invalid-position-at-import-rule */
+
+// Uses
+@use "sass:math";
+
+// bootstrap
+@import 'bootstrap';
+
+// Combine styles
+@media print {
+    @import 'print';
+}
+
+@media screen {
+    // This enhanced stylesheet is loaded when certain javascript requirements are validated
+    // Core is always loaded but we merge core into enhanced rather than load core as a seperate file here
+    // Check the `library/patterns/common/html-head` and `_src/js/mustard.js` to see how we're loading core when enhanced isn't available
+    @import 'core';
+
+    // We only want to load fonts if the users browser has javascript and meets our minimum javascript requirements.
+    // If they don't we're assuming they came for data rather than the sexy visuals; don't waste their bandwidth.
+    @import 'fonts';
+
+    // Enhanced Patterns
+    .enhanced {
+        // Import your library specific enhanced scss files here.
+        // To be more specific/dry you would import all individual _enhanced.scss styles here but it can get tedious so I've implemented globbing.
+        // Rather than glob a global directory, we glob a bit more specifically in sequential order of cascade importance
+        // eg. @import '../../library/patterns/components/**/_enhanced.scss'
+        // eg. @import '../../library/patterns/sections/**/_enhanced.scss'
+        // eg. @import '../../library/pages/**/_enhanced.scss'
+
+        @import '../../library/patterns/components/**/_enhanced.scss';
+    }
+}
