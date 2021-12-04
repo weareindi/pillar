@@ -1,0 +1,5 @@
+{% if text is defined and text %}
+<div class="c-typography {{ style is defined and style ? 'c-typography--' ~ style : 'c-typography--default' }}">
+    {{ text|raw }}
+</div>
+{% endif %}

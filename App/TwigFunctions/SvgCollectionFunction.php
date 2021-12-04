@@ -37,7 +37,7 @@ class SvgCollectionFunction extends TwigAbstractExtension {
         // Loop over source files
         $di = new \RecursiveDirectoryIterator($this->path, \RecursiveDirectoryIterator::SKIP_DOTS);
         $ii = new \RecursiveIteratorIterator($di, \RecursiveIteratorIterator::SELF_FIRST);
-        foreach($ii as $file) {
+        foreach ($ii as $file) {
             if ($file->getExtension() !== 'svg') {
                 continue;
             }

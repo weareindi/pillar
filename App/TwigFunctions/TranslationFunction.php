@@ -8,7 +8,8 @@ class TranslationFunction extends TwigAbstractExtension {
 
     private $path = '';
 
-    public function __construct() {}
+    public function __construct() {
+    }
 
     /**
      * Prepare Function

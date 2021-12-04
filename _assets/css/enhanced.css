@@ -1,1 +1,31 @@
-@media screen{.c-svg__image{opacity:1}.font--opensans :after,.font--opensans :before,.font--opensans a,.font--opensans button,.font--opensans cite,.font--opensans figcaption,.font--opensans h1,.font--opensans h2,.font--opensans h3,.font--opensans h4,.font--opensans h5,.font--opensans h6,.font--opensans input,.font--opensans label,.font--opensans p,.font--opensans select,.font--opensans span,.font--opensans textarea{font-family:Open Sans,sans-serif}}
+/* stylelint-disable no-invalid-position-at-import-rule */
+@media print {
+  /* stylelint-disable no-invalid-position-at-import-rule */
+}
+@media screen {
+  /* stylelint-disable no-invalid-position-at-import-rule */
+  .c-svg__image {
+    opacity: 1;
+  }
+
+  .font--opensans label,
+.font--opensans input,
+.font--opensans textarea,
+.font--opensans select,
+.font--opensans button,
+.font--opensans p,
+.font--opensans h1,
+.font--opensans h2,
+.font--opensans h3,
+.font--opensans h4,
+.font--opensans h5,
+.font--opensans h6,
+.font--opensans figcaption,
+.font--opensans cite,
+.font--opensans a,
+.font--opensans span,
+.font--opensans *:before,
+.font--opensans *:after {
+    font-family: "Open Sans", sans-serif;
+  }
+}

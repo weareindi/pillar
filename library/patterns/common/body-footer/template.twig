@@ -6,16 +6,17 @@
 {# Project Scripts #}
 <script>
     {# Register Theme Directory Variable #}
-    window.themeDir = '{{ theme.link }}';
-    window.themeVersion = '{{ version }}';
+    window.themeDir = '{{ theme.link|raw }}';
+    window.themeVersion = '{{ version|raw }}';
+    window.ajaxUrl = '{{ ajax_url|raw }}';
 
     {# Inline Cut The Mustard Script #}
-    {{ source('/_assets/js/mustard.js', ignore_missing = true) }}
+    {{ source('_assets/js/mustard.js', ignore_missing = true) }}
 
     {# Register service worker #}
-    if (navigator.serviceWorker) {
-        navigator.serviceWorker.register('/sw.js', {
-            scope: './'
-        });
-    }
+    // if (navigator.serviceWorker) {
+        // navigator.serviceWorker.register('/sw.js', {
+        //     scope: './'
+        // });
+    // }
 </script>

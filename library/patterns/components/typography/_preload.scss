@@ -1,0 +1,69 @@
+@use 'sass:math';
+
+@mixin typography($styles) {
+    @each $style, $properties in $styles {
+        $font-size: map-get($properties, 'font-size');
+        $font-weight: map-get($properties, 'font-weight');
+        $line-height: map-get($properties, 'line-height');
+        $letter-spacing: map-get($properties, 'letter-spacing');
+        $paragraph-spacing: map-get($properties, 'paragraph-spacing');
+
+        .c-typography--#{$style} {
+            margin: (-(em(math.div(($line-height - $font-size), 2)))) 0;
+
+            p {
+                font-size: em($font-size);
+                font-weight: $font-weight;
+                line-height: em($line-height, $font-size);
+                letter-spacing: $letter-spacing;
+
+                ~ p {
+                    margin-top: em($paragraph-spacing, $font-size);
+                }
+
+                strong {
+                    font-weight: bold;
+                }
+
+                em {
+                    font-style: italic;
+                }
+
+                a {
+                    font-weight: bold;
+                    text-decoration: underline;
+                    color: inherit;
+                    background-color: inherit;
+
+                    &:hover {
+                        text-decoration: none;
+                        color: inherit;
+                        background-color: inherit;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include typography((
+    default: (
+        font-size: 18,
+        font-weight: normal,
+        line-height: (18 * 2.4),
+        letter-spacing: 0.08em,
+        paragraph-spacing: (18 * 2.4)
+    )
+));
+
+.c-typography {}
+
+@media (min-width: em(320)) {}
+
+@media (min-width: em(414)) {}
+
+@media (min-width: em(768)) {}
+
+@media (min-width: em(1024)) {}
+
+@media (min-width: em(1440)) {}

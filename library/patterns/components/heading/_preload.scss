@@ -1,0 +1,73 @@
+@mixin heading($sizes) {
+    @each $size, $properties in $sizes {
+        $font-size: map-get($properties, 'font-size');
+        $font-weight: map-get($properties, 'font-weight');
+        $line-height: map-get($properties, 'line-height');
+        $letter-spacing: map-get($properties, 'letter-spacing');
+        $first-line-font-size: map-get($properties, 'first-line-font-size');
+        $first-line-line-height: map-get($properties, 'first-line-line-height');
+
+        .c-heading--#{$size} {
+            margin: em(-(math.div(($line-height - $font-size), 2))) 0;
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-size: em($font-size);
+                font-weight: $font-weight;
+                line-height: em($line-height, $font-size);
+                letter-spacing: $letter-spacing;
+
+                @if $first-line-font-size and $first-line-line-height {
+                    &:first-line {
+                        font-size: em($first-line-font-size, $font-size);
+                        line-height: em($first-line-line-height, $first-line-font-size);
+                    }
+                }
+
+                strong {
+                    font-weight: bold;
+                }
+
+                em {
+                    font-style: italic;
+                }
+
+                del {
+                    text-decoration: line-through;
+                }
+            }
+        }
+    }
+}
+
+@include heading((
+    default: (
+        font-size: 18,
+        font-weight: bold,
+        line-height: (18 * 1.4),
+        letter-spacing: 0.04em
+    )
+));
+
+.c-heading,
+.c-heading__body {
+    display: block;
+}
+
+.c-heading__body {}
+
+@media (min-width: em(320)) {}
+
+@media (min-width: em(414)) {}
+
+@media (min-width: em(768)) {}
+
+@media (min-width: em(1024)) {}
+
+@media (min-width: em(1024)) {}
+
+@media (min-width: em(1440)) {}

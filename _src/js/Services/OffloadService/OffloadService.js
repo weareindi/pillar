@@ -1,5 +1,5 @@
-import {version} from '../../../../package.json';
-import {OffloadSurfaceService} from './OffloadSurfaceService';
+import packageInfo from '../../../../package.json';
+import { OffloadSurfaceService } from './OffloadSurfaceService';
 
 export class OffloadService {
     constructor(options) {
@@ -11,7 +11,7 @@ export class OffloadService {
         // prepare options
         const defaults = {
             path: '',
-            version: version
+            version: packageInfo.version
         };
 
         // update options with user defined parameters

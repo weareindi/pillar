@@ -1,4 +1,15 @@
-/* stylelint-disable no-invalid-position-at-import-rule */
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+
+<!--[if lt IE 9]>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+<![endif]-->
+
+<style>/* stylelint-disable no-invalid-position-at-import-rule */
 *,
 *:before,
 *:after {
@@ -318,4 +329,33 @@ button:focus {
   text-decoration: none;
   color: inherit;
   background-color: inherit;
-}
+}</style>
+
+<noscript>
+    <link rel="stylesheet" href="/_assets/css/core.css?v=">
+    <link rel="stylesheet" href="/_assets/css/print.css?v=" media="print">
+</noscript>
+
+
+    </head>
+    <body class="page ">
+        
+            Example Page
+
+        
+
+
+<script>
+        window.themeDir = '';
+    window.themeVersion = '';
+
+        !function(){window.ctm||(window.ctm={});var e=window.ctm;e.construct=function(){return e.getSurfaces(),e.validEnvironment()?e.registerEnhanced():e.registerCore()},e.validEnvironment=function(){return!e.coreRequired()&&("querySelector"in document&&"localStorage"in window&&"addEventListener"in window)},e.coreRequired=function(e){return void 0!==e&&(window.localStorage.setItem("core",e),location.reload()),!!JSON.parse(window.localStorage.getItem("core"))},e.getSurfaces=function(){e.surfaces={html:document.getElementsByTagName("html")[0],head:document.getElementsByTagName("head")[0],body:document.getElementsByTagName("body")[0]}},e.registerEnhanced=function(){e.surfaces.html.className+=" enhanced",e.appendStylesheet(window.themeDir+"/_assets/css/enhanced.css?v="+window.themeVersion),e.appendScript(window.themeDir+"/_assets/js/script.js?v="+window.themeVersion)},e.registerCore=function(){e.appendStylesheet(window.themeDir+"/_assets/css/core.css?v="+window.themeVersion)},e.appendStylesheet=function(t){var n=document.createElement("link");n.rel="stylesheet",n.type="text/css",n.href=t,e.surfaces.head.appendChild(n)},e.appendScript=function(t){var n=document.createElement("script");n.src=t,n.defer=!0,e.surfaces.body.appendChild(n)},e.construct()}();
+
+        if (navigator.serviceWorker) {
+        navigator.serviceWorker.register('/sw.js', {
+            scope: './'
+        });
+    }
+</script>
+    </body>
+</html>

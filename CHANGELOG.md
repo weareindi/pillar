@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+
+## [1.9.7] - 2021-12-04
+### Change
+- Refactor/Linting
+- Build tools update
+
 ## [1.9.2 - 1.9.6] - 2021-10-01
 ### Fixed
 - Update filters, functions, and global context classes.

@@ -14,13 +14,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ExampleCommand extends Command {
     protected function configure() {
         $this->setName('example');
-		$this->setDescription('This is an example custom console command');
+        $this->setDescription('This is an example custom console command');
 
         // we're done now
         return Command::SUCCESS;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
-		$output->writeln('Example Command Executed');
+        $output->writeln('Example Command Executed');
     }
 }

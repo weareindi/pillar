@@ -280,8 +280,8 @@ export class OffloadSurfaceService {
             .then((mq) => {
                 // find matching data result
                 const dataset = this.datasets.find((dataset) => {
-                    const datasetMinWidth = typeof dataset.minwidth !== 'undefined' ? parseInt(dataset.minwidth.replace(/\D/g,'')) : 0;
-                    const mqMinWidth = parseInt(mq.media.replace(/\D/g,''));
+                    const datasetMinWidth = typeof dataset.minwidth !== 'undefined' ? parseInt(dataset.minwidth.replace(/\D/g, '')) : 0;
+                    const mqMinWidth = parseInt(mq.media.replace(/\D/g, ''));
 
                     if (datasetMinWidth === mqMinWidth) {
                         return true;

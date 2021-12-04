@@ -14,6 +14,7 @@ const plugins = {
     cssnano: require('cssnano'),
     del: require('del'),
     glob: require('glob'),
+    env: require('env'),
     log: require('fancy-log'),
     postcss: require('gulp-postcss'),
     sass: require('gulp-sass')(require('sass')),

@@ -29,25 +29,34 @@
             "error",
             "always"
         ],
-        "comma-dangle": ["error", {
-            "arrays": "never",
-            "objects": "never",
-            "imports": "never",
-            "exports": "never",
-            "functions": "ignore"
-        }],
-        "max-len": [2, {
+        "comma-dangle": [
+            "error",
+            {
+                "arrays": "never",
+                "objects": "never",
+                "imports": "never",
+                "exports": "never",
+                "functions": "ignore"
+            }
+        ],
+        "max-len": [
+            2,
+            {
           code: 240,
           tabWidth: 4,
-        }],
-        "require-jsdoc": ["error", {
-            "require": {
-                "FunctionDeclaration": true,
-                "MethodDefinition": true,
-                "ClassDeclaration": false,
-                "ArrowFunctionExpression": true,
-                "FunctionExpression": false
             }
-        }]
+        ],
+        "require-jsdoc": [
+            "error",
+            {
+                "require": {
+                    "FunctionDeclaration": true,
+                    "MethodDefinition": true,
+                    "ClassDeclaration": false,
+                    "ArrowFunctionExpression": true,
+                    "FunctionExpression": false
+                }
+            }
+        ]
     }
 }

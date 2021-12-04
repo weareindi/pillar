@@ -2,6 +2,7 @@
 //
 // Usage: `@include clearfix()`
 // Usage: `@include clearfix(remove)`
+
 @mixin clearfix($process: create) {
     // Remove a clearfix from a previously clearfixed element
     // Useful for when we upgrade an element to use flexbox as flexbox doesn't ignore pseudo elements
@@ -15,7 +16,7 @@
     @else {
         &:before,
         &:after {
-            content: "";
+            content: '';
             display: table;
         }
 

@@ -13,6 +13,7 @@
 //     </h1>
 // </header>
 // ```
+
 @function em($pixels: 16, $context: 16) {
-    @return ( $pixels / $context ) * 1em;
+    @return math.div($pixels, $context) * 1em;
 }

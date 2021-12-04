@@ -1,7 +1,12 @@
 {
     "name": "weareindi/pillar",
     "description": "A TWIG powered pattern system",
-    "keywords": ["pattern library", "pattern system", "twig", "atomic"],
+    "keywords": [
+        "pattern library",
+        "pattern system",
+        "twig",
+        "atomic"
+    ],
     "license": "MIT",
     "support": {
         "issues": "https://github.com/weareindi/pillar/issues",
@@ -9,12 +14,14 @@
         "source": "https://github.com/weareindi/pillar/releases"
     },
     "type": "project",
-    "authors": [{
-        "name": "Laurence Archer",
-        "email": "laurence@weareindi.co.uk",
-        "homepage": "https://weareindi.co.uk/",
-        "role": "Developer"
-    }],
+    "authors": [
+        {
+            "name": "Laurence Archer",
+            "email": "laurence@weareindi.co.uk",
+            "homepage": "https://weareindi.co.uk/",
+            "role": "Developer"
+        }
+    ],
     "minimum-stability": "stable",
     "require": {
         "weareindi/pillar-core": "^1.9.5"
