@@ -1,4 +1,4 @@
-module.exports = (gulp, options, plugins) => {
+export default function(gulp, plugins) {
     gulp.task('mustard', () => {
         return gulp.src([
             process.env.JS_SRC + 'mustard.js'

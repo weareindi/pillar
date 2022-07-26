@@ -1,5 +1,5 @@
 // Services
-import { OffloadService } from './Services/OffloadService/OffloadService';
+import { OffloadService } from './Services/OffloadService/OffloadService.js';
 
 // Directives
 // import ...

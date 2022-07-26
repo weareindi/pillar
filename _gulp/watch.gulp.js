@@ -1,8 +1,4 @@
-module.exports = (gulp, options, plugins) => {
-    gulp.task('watch', gulp.series(
-        gulp.parallel('watch-scss', 'watch-js', 'watch-patterns')
-    ));
-
+export default function(gulp, plugins) {
     gulp.task('watch-scss', () => {
         return gulp.watch([
             process.env.SCSS_SRC + '**/*.scss',
@@ -32,4 +28,8 @@ module.exports = (gulp, options, plugins) => {
             gulp.parallel('sync-reload')
         ));
     });
+
+    gulp.task('watch', gulp.series(
+        gulp.parallel('watch-scss', 'watch-js', 'watch-patterns')
+    ));
 };

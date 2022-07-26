@@ -1,4 +1,4 @@
-module.exports = (gulp, options, plugins) => {
+export default function(gulp, plugins) {
     // prepare script names/filenames
     const scripts = {
         'js-script': 'script.js',
@@ -7,42 +7,6 @@ module.exports = (gulp, options, plugins) => {
         'js-workers': '**/*Worker.js',
         'js-helpers': '**/*Helper.js'
     };
-
-    // register global js task
-    gulp.task('js', (done) => {
-        const tasks = [];
-
-        for (let name in scripts) {
-            if (scripts.hasOwnProperty(name)) {
-                const task = gulp.series(`${name}`, (taskDone) => {
-                    taskDone();
-                });
-
-                tasks.push(task);
-            }
-        }
-
-        // trigger cleanup
-        const task = gulp.series('js-cleanup', (taskDone) => {
-            taskDone();
-        });
-        tasks.push(task);
-
-        // run tasks
-        return gulp.series(...tasks, (seriesDone) => {
-            seriesDone();
-            done();
-        })();
-    });
-
-    // register global terser task
-    gulp.task('js-terser', gulp.series(
-        gulp.parallel('js-script-terser'),
-        gulp.parallel('js-additional-terser'),
-        gulp.parallel('js-threads-terser'),
-        gulp.parallel('js-workers-terser'),
-        gulp.parallel('js-helpers-terser')
-    ));
 
     // loop through script names
     for (let name in scripts) {
@@ -98,7 +62,7 @@ module.exports = (gulp, options, plugins) => {
         })();
     }
 
-    //register terser script
+    // register terser script
     const terser = (filename, done) => {
         // prepare filenames
         const files = plugins.glob.sync(process.env.JS_DEST + filename);
@@ -122,6 +86,42 @@ module.exports = (gulp, options, plugins) => {
             done();
         })();
     }
+
+    // register global js task
+    gulp.task('js', (done) => {
+        const tasks = [];
+
+        for (let name in scripts) {
+            if (scripts.hasOwnProperty(name)) {
+                const task = gulp.series(`${name}`, (taskDone) => {
+                    taskDone();
+                });
+
+                tasks.push(task);
+            }
+        }
+
+        // trigger cleanup
+        const task = gulp.series('js-cleanup', (taskDone) => {
+            taskDone();
+        });
+        tasks.push(task);
+
+        // run tasks
+        return gulp.series(...tasks, (seriesDone) => {
+            seriesDone();
+            done();
+        })();
+    });
+
+    // register global terser task
+    gulp.task('js-terser', gulp.series(
+        gulp.parallel('js-script-terser'),
+        gulp.parallel('js-additional-terser'),
+        gulp.parallel('js-threads-terser'),
+        gulp.parallel('js-workers-terser'),
+        gulp.parallel('js-helpers-terser')
+    ));
 
     // cleaup
     gulp.task('js-cleanup', (done) => {

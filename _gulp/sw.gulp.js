@@ -1,4 +1,4 @@
-module.exports = (gulp, options, plugins) => {
+export default function(gulp, plugins) {
     gulp.task('sw', () => {
         return gulp.src([
             process.env.SW_SRC + 'sw.js'
