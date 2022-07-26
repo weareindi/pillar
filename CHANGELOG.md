@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.10.0 - 1.10.1] - 2022-07-26
+### Change
+- Build tools update
+- Change to module based Gulp. `.js` file extensions now required on `import`
 
 ## [1.9.7] - 2021-12-04
 ### Change
