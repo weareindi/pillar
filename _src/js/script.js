@@ -2,8 +2,8 @@
 import fetchInject from 'fetch-inject';
 
 // Services
-import { WebFontService } from './Services/WebFontService/WebFontService';
-import { ViewportHeightService } from './Services/ViewportHeightService/ViewportHeightService';
+import { WebFontService } from './Services/WebFontService/WebFontService.js';
+import { ViewportHeightService } from './Services/ViewportHeightService/ViewportHeightService.js';
 
 // Run
 Promise.all([

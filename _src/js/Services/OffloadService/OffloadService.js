@@ -1,5 +1,5 @@
 import packageInfo from '../../../../package.json';
-import { OffloadSurfaceService } from './OffloadSurfaceService';
+import { OffloadSurfaceService } from './OffloadSurfaceService.js';
 
 export class OffloadService {
     constructor(options) {

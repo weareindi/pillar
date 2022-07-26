@@ -1,4 +1,4 @@
-module.exports = (gulp, options, plugins) => {
+export default function(gulp, plugins) {
     gulp.task('sync', () => {
         return plugins.browsersync.init({
             proxy: process.env.HOST + ':' + process.env.PORT,
@@ -11,4 +11,4 @@ module.exports = (gulp, options, plugins) => {
         plugins.browsersync.reload();
         done();
     });
-};
+}
