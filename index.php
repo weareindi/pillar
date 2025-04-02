@@ -28,7 +28,7 @@ include 'App/TwigFunctions/ExampleFunction.php';
 Pillar::addTwigExtension(new ExampleFunction());
 
 include 'App/TwigFunctions/SvgCollectionFunction.php';
-Pillar::addTwigExtension(new SvgCollectionFunction(getenv('SVGCOLLECTION_PATH')));
+Pillar::addTwigExtension(new SvgCollectionFunction( $_ENV['SVGCOLLECTION_PATH'] ));
 
 include 'App/TwigFunctions/TranslationFunction.php';
 Pillar::addTwigExtension(new TranslationFunction());
