@@ -15,12 +15,12 @@ class ExampleCommand extends Command {
     protected function configure() {
         $this->setName('example');
         $this->setDescription('This is an example custom console command');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output): int {
+        $output->writeln('Example Command Executed');
 
         // we're done now
         return Command::SUCCESS;
-    }
-
-    protected function execute(InputInterface $input, OutputInterface $output) {
-        $output->writeln('Example Command Executed');
     }
 }
