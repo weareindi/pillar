@@ -24,6 +24,6 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "weareindi/pillar-core": "^1.9.5"
+        "weareindi/pillar-core": "1.10.0"
     }
 }
