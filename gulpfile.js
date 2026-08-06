@@ -1,78 +1,93 @@
-// events emitter
-import events from 'events';
-events.EventEmitter.prototype._maxListeners = 100;
-
-// dotenv
-import dotenv from 'dotenv';
-dotenv.config(); // Loads default .env file variables into `process.env`
-dotenv.config({path: './.env.gulp'}); // Loads gulp .env file variables into `process.env`
-
-// gulp
-import gulp from 'gulp';
-
-// forward ref (so we can import gulp tasks in any order)
-import ForwardRefRegistry from 'undertaker-forward-reference';
-gulp.registry(ForwardRefRegistry());
-
-// plugins
 import autoprefixer from 'autoprefixer';
-import browsersync from 'browser-sync';
 import cssnano from 'cssnano';
 import {deleteAsync} from 'del';
-import glob from 'glob';
-import gulpbabel from 'gulp-babel';
-import gulppostcss from 'gulp-postcss';
-import gulpsass from 'gulp-sass';
-import gulpterser from 'gulp-terser';
-import env from 'env';
-import log from 'fancy-log';
-import plumber from 'gulp-plumber';
-import pluginError from 'plugin-error';
+import dotenv from 'dotenv';
+import fs from 'node:fs/promises';
+import {readFileSync} from 'node:fs';
+import {globSync} from 'glob';
+import gulp from 'gulp';
+import path from 'node:path';
+import {fileURLToPath, pathToFileURL} from 'node:url';
+import postcss from 'postcss';
 import * as sass from 'sass';
-import sassVariables from 'gulp-sass-variables';
-import sassGlobbing from 'node-sass-globbing';
-import vinylbuffer from 'vinyl-buffer';
-import vinylsource from 'vinyl-source-stream';
+import {minify} from 'terser';
+import {createServer} from 'vite';
 import webpack from 'webpack';
-import webpackStream from 'webpack-stream';
+
+dotenv.config({quiet: true});
+dotenv.config({path: './.env.gulp', quiet: true});
 
 const plugins = {
     autoprefixer: autoprefixer,
-    babel: gulpbabel,
-    browsersync: browsersync.create(),
     cssnano: cssnano,
     del: deleteAsync,
-    glob: glob,
-    env: env,
-    log: log,
-    postcss: gulppostcss,
-    plumber: plumber,
-    pluginError: pluginError,
-    sass: gulpsass(sass),
-    sassVariables: sassVariables,
-    sassGlobbing: sassGlobbing,
-    terser: gulpterser,
-    vinylBuffer: vinylbuffer,
-    vinylSource: vinylsource,
-    webpack: webpack,
-    webpackStream: webpackStream
+    fs: fs,
+    glob: globSync,
+    minify: minify,
+    path: path,
+    postcss: postcss,
+    sass: sass,
+    vite: {
+        createServer,
+        server: null
+    },
+    sassGlobbing: {
+        canonicalize(url, options) {
+            if (url.startsWith('pillar-file:')) {
+                const file = Buffer.from(url.slice('pillar-file:'.length), 'base64url').toString();
+                return pathToFileURL(file);
+            }
+
+            if (!url.includes('*')) {
+                return null;
+            }
+
+            const base = options.containingUrl
+                ? path.dirname(fileURLToPath(options.containingUrl))
+                : process.cwd();
+            const files = globSync(url, {absolute: true, cwd: base});
+            const id = Buffer.from(JSON.stringify(files)).toString('base64url');
+
+            return new URL(`pillar-glob:${id}`);
+        },
+        load(canonicalUrl) {
+            if (canonicalUrl.protocol === 'file:') {
+                return {
+                    contents: readFileSync(fileURLToPath(canonicalUrl), 'utf8'),
+                    sourceMapUrl: canonicalUrl,
+                    syntax: 'scss'
+                };
+            }
+
+            const files = JSON.parse(Buffer.from(canonicalUrl.pathname, 'base64url').toString());
+
+            return {
+                contents: files.map((file) => {
+                    const id = Buffer.from(file).toString('base64url');
+                    return `@forward "pillar-file:${id}";`;
+                }).join('\n'),
+                syntax: 'scss'
+            };
+        }
+    },
+    webpack: webpack
 };
 
 // tasks
-import taskbrowsersync from './_gulp/browsersync.gulp.js';
 import taskdefault from './_gulp/default.gulp.js';
 import taskjs from './_gulp/js.gulp.js';
 import taskmustard from './_gulp/mustard.gulp.js';
 import taskproduction from './_gulp/production.gulp.js';
 import taskscss from './_gulp/scss.gulp.js';
 import tasksw from './_gulp/sw.gulp.js';
+import tasksync from './_gulp/sync.gulp.js';
 import taskwatch from './_gulp/watch.gulp.js';
 
-taskbrowsersync(gulp, plugins);
-taskdefault(gulp, plugins);
 taskjs(gulp, plugins);
-taskmustard(gulp, plugins);
-taskproduction(gulp, plugins);
 taskscss(gulp, plugins);
+taskmustard(gulp, plugins);
 tasksw(gulp, plugins);
 taskwatch(gulp, plugins);
+tasksync(gulp, plugins);
+taskproduction(gulp, plugins);
+taskdefault(gulp, plugins);

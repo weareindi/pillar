@@ -1,14 +1,14 @@
 // Variables
-@import 'vars/colors';
-@import 'vars/easings';
+@forward 'vars/colors';
+@forward 'vars/easings';
 
 // Functions
-@import 'functions/pxtoem';
+@forward 'functions/pxtoem';
 
 // Mixins
-@import 'mixins/clearfix';
-@import 'mixins/hidden';
-@import 'mixins/impheight';
-@import 'mixins/pngsvg';
-@import 'mixins/placeholder';
-@import 'mixins/removehighlight';
+@forward 'mixins/clearfix';
+@forward 'mixins/hidden';
+@forward 'mixins/impheight';
+@forward 'mixins/pngsvg';
+@forward 'mixins/placeholder';
+@forward 'mixins/removehighlight';

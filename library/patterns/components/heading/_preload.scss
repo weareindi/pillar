@@ -1,11 +1,15 @@
+@use 'sass:map';
+@use 'sass:math';
+@use '_src/scss/bootstrap' as *;
+
 @mixin heading($sizes) {
     @each $size, $properties in $sizes {
-        $font-size: map-get($properties, 'font-size');
-        $font-weight: map-get($properties, 'font-weight');
-        $line-height: map-get($properties, 'line-height');
-        $letter-spacing: map-get($properties, 'letter-spacing');
-        $first-line-font-size: map-get($properties, 'first-line-font-size');
-        $first-line-line-height: map-get($properties, 'first-line-line-height');
+        $font-size: map.get($properties, 'font-size');
+        $font-weight: map.get($properties, 'font-weight');
+        $line-height: map.get($properties, 'line-height');
+        $letter-spacing: map.get($properties, 'letter-spacing');
+        $first-line-font-size: map.get($properties, 'first-line-font-size');
+        $first-line-line-height: map.get($properties, 'first-line-line-height');
 
         .c-heading--#{$size} {
             margin: em(-(math.div(($line-height - $font-size), 2))) 0;
