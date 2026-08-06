@@ -1,12 +1,14 @@
+@use 'sass:map';
 @use 'sass:math';
+@use '_src/scss/bootstrap' as *;
 
 @mixin typography($styles) {
     @each $style, $properties in $styles {
-        $font-size: map-get($properties, 'font-size');
-        $font-weight: map-get($properties, 'font-weight');
-        $line-height: map-get($properties, 'line-height');
-        $letter-spacing: map-get($properties, 'letter-spacing');
-        $paragraph-spacing: map-get($properties, 'paragraph-spacing');
+        $font-size: map.get($properties, 'font-size');
+        $font-weight: map.get($properties, 'font-weight');
+        $line-height: map.get($properties, 'line-height');
+        $letter-spacing: map.get($properties, 'letter-spacing');
+        $paragraph-spacing: map.get($properties, 'paragraph-spacing');
 
         .c-typography--#{$style} {
             margin: (-(em(math.div(($line-height - $font-size), 2)))) 0;

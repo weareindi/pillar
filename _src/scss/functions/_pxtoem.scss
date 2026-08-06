@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // Convert pixels to em
 //
 // We're assuming the browser default font-size is 16 pixels and have defined that as our default context.

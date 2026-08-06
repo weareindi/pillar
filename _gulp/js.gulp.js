@@ -8,111 +8,60 @@ export default function(gulp, plugins) {
         'js-helpers': '**/*Helper.js'
     };
 
-    // loop through script names
-    for (let name in scripts) {
-        if (scripts.hasOwnProperty(name)) {
-            gulp.task(`${name}`, (done) => {
-                return compile(scripts[name], done);
-            });
-
-            gulp.task(`${name}-terser`, (done) => {
-                return terser(scripts[name], done);
-            });
-        }
-    }
-
-    // register compile script
-    const compile = (filename, done) => {
-        // prepare filenames
-        const files = plugins.glob.sync(process.env.JS_SRC + filename);
-
-        // prepare tasks
-        const tasks = files.map((file) => {
-            return (taskDone) => {
-                return gulp.src([file])
-                    .pipe(plugins.webpack({
-                        mode: 'production',
-                        performance: {
-                            hints: false
-                        },
-                        module: {
-                            rules: [
-                                {
-                                    test: /\.html$/i,
-                                    loader: "html-loader",
-                                }
-                            ]
-                        },
-                        output: {
-                            filename: path.basename(file)
-                        }
-                    }))
-                    .pipe(plugins.babel({
-                        presets: ['@babel/env']
-                    }))
-                    .pipe(gulp.dest(process.env.JS_DEST))
-                    .on('error', plugins.log.error);
-            }
+    const runWebpack = (file) => new Promise((resolve, reject) => {
+        const compiler = plugins.webpack({
+            entry: plugins.path.resolve(file),
+            mode: 'production',
+            output: {
+                filename: plugins.path.basename(file),
+                path: plugins.path.resolve(process.env.JS_DEST)
+            },
+            performance: {hints: false},
+            target: ['web', 'es2018']
         });
 
-        // run tasks
-        return gulp.series(...tasks, (seriesDone) => {
-            seriesDone();
-            done();
-        })();
-    }
-
-    // register terser script
-    const terser = (filename, done) => {
-        // prepare filenames
-        const files = plugins.glob.sync(process.env.JS_DEST + filename);
-
-        // prepare tasks
-        const tasks = files.map((file) => {
-            return (taskDone) => {
-                gulp.src([file])
-                    .pipe(plugins.terser())
-                    .pipe(gulp.dest(process.env.JS_DEST))
-                    .on('finish', () => {
-                        taskDone();
-                    })
-                    .on('error', plugins.log.error);
+        compiler.run((error, stats) => {
+            compiler.close(() => {});
+            if (error) {
+                reject(error);
+                return;
             }
+            if (stats.hasErrors()) {
+                reject(new Error(stats.toString({all: false, errors: true})));
+                return;
+            }
+            resolve();
         });
+    });
 
-        // run tasks
-        return gulp.parallel(...tasks, (parallelDone) => {
-            parallelDone();
-            done();
-        })();
+    const compile = async (filename) => {
+        const files = plugins.glob(process.env.JS_SRC + filename);
+        await Promise.all(files.map(runWebpack));
+    };
+
+    const minify = async (filename) => {
+        const files = plugins.glob(process.env.JS_DEST + filename);
+        await Promise.all(files.map(async (file) => {
+            const source = await plugins.fs.readFile(file, 'utf8');
+            const result = await plugins.minify(source);
+            await plugins.fs.writeFile(file, result.code);
+        }));
+    };
+
+    for (const [name, filename] of Object.entries(scripts)) {
+        gulp.task(name, () => compile(filename));
+        gulp.task(`${name}-terser`, () => minify(filename));
     }
 
     // register global js task
-    gulp.task('js', (done) => {
-        const tasks = [];
-
-        for (let name in scripts) {
-            if (scripts.hasOwnProperty(name)) {
-                const task = gulp.series(`${name}`, (taskDone) => {
-                    taskDone();
-                });
-
-                tasks.push(task);
-            }
-        }
-
-        // trigger cleanup
-        const task = gulp.series('js-cleanup', (taskDone) => {
-            taskDone();
-        });
-        tasks.push(task);
-
-        // run tasks
-        return gulp.series(...tasks, (seriesDone) => {
-            seriesDone();
-            done();
-        })();
+    // cleaup
+    gulp.task('js-cleanup', () => {
+        return plugins.del([
+            process.env.JS_DEST + '**/*.LICENSE.js'
+        ]);
     });
+
+    gulp.task('js', gulp.series(...Object.keys(scripts), 'js-cleanup'));
 
     // register global terser task
     gulp.task('js-terser', gulp.series(
@@ -122,11 +71,4 @@ export default function(gulp, plugins) {
         gulp.parallel('js-workers-terser'),
         gulp.parallel('js-helpers-terser')
     ));
-
-    // cleaup
-    gulp.task('js-cleanup', (done) => {
-        return plugins.del([
-            process.env.JS_DEST + '**/*.LICENSE.js'
-        ]);
-    });
 };

@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // A quick helper to calculate the implicit height of an item.
 //
 // Useful for ensuring videos and images keep their aspect ratio

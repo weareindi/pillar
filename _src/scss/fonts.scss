@@ -1,3 +1,5 @@
+@use 'sass:meta';
+
 // Custom Fonts Loaded Via WebFontLoader
 
 // Notes: WebFontLoader (_src/js/Services/WebFontService) add classes to the html tag as it loads each required fontface.
@@ -26,5 +28,5 @@
     }
 
     // We don't expect custom fonts to care about the cascade so we can look through the pattern directory as a whole
-    // @import '../../library/patterns/**/_font--indi.scss';
+    // @include meta.load-css('../../library/patterns/**/_font--indi.scss');
 }

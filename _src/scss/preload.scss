@@ -1,11 +1,7 @@
-// Uses
-@use 'sass:math';
-
-// bootstrap
-@import 'bootstrap';
+@use 'bootstrap' as *;
 
 // Preload
-@import 'preload/reset';
+@use 'preload/reset';
 
 // Preload styles only
 // This aim of this stylesheet is to ensure the data within your site is accessible and coherant without any bells or whistles of modern CSS properties.
@@ -22,8 +18,8 @@
 // Import your library specific preload scss files here.
 // To be more specific/dry you would import all individual _preload.scss styles here but it can get tedious so I've implemented globbing.
 // Rather than glob a global directory, we glob a bit more specifically in sequential order of cascade importance
-// eg. @import '../../library/patterns/components/**/_preload.scss'
-// eg. @import '../../library/patterns/sections/**/_preload.scss'
-// eg. @import '../../library/pages/**/_preload.scss'
+// eg. @use '../../library/patterns/components/**/_preload.scss'
+// eg. @use '../../library/patterns/sections/**/_preload.scss'
+// eg. @use '../../library/pages/**/_preload.scss'
 
-@import '../../library/patterns/components/**/_preload.scss';
+@use '../../library/patterns/components/**/_preload.scss';

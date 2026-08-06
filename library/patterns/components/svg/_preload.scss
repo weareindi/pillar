@@ -1,3 +1,6 @@
+@use 'sass:math';
+@use '_src/scss/bootstrap' as *;
+
 @mixin svg($width, $height) {
     @include impheight($width, $height);
 

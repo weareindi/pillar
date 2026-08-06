@@ -1,66 +1,34 @@
 export default function(gulp, plugins) {
-    gulp.task('scss-print', () => {
-        return gulp.src(process.env.SCSS_SRC + 'print.scss')
-            .pipe(plugins.sass({
-                importer: plugins.sassGlobbing
-            }))
-            .pipe(plugins.postcss([
-                plugins.autoprefixer()
-            ]))
-            .pipe(gulp.dest(process.env.SCSS_DEST))
-            .on('error', plugins.log.error);
-    });
+    const compile = async (name) => {
+        const source = plugins.path.join(process.env.SCSS_SRC, `${name}.scss`);
+        const destination = plugins.path.join(process.env.SCSS_DEST, `${name}.css`);
+        const result = plugins.sass.compile(source, {
+            importers: [plugins.sassGlobbing],
+            loadPaths: [process.cwd()],
+            style: 'expanded'
+        });
+        const processed = await plugins.postcss([
+            plugins.autoprefixer()
+        ]).process(result.css, {from: source, to: destination});
 
-    gulp.task('scss-preload', () => {
-        return gulp.src(process.env.SCSS_SRC + 'preload.scss')
-            .pipe(plugins.sass({
-                importer: plugins.sassGlobbing
-            }))
-            .pipe(plugins.postcss([
-                plugins.autoprefixer()
-            ]))
-            .pipe(gulp.dest(process.env.SCSS_DEST))
-            .on('error', plugins.log.error);
-    });
+        await plugins.fs.mkdir(process.env.SCSS_DEST, {recursive: true});
+        await plugins.fs.writeFile(destination, processed.css);
+    };
 
-    gulp.task('scss-core', () => {
-        return gulp.src(process.env.SCSS_SRC + 'core.scss')
-            .pipe(plugins.sass({
-                importer: plugins.sassGlobbing
-            }))
-            .pipe(plugins.postcss([
-                plugins.autoprefixer()
-            ]))
-            .pipe(gulp.dest(process.env.SCSS_DEST))
-            .on('error', plugins.log.error);
-    });
+    for (const name of ['print', 'preload', 'core', 'enhanced']) {
+        gulp.task(`scss-${name}`, () => compile(name));
+    }
 
-    gulp.task('scss-enhanced', () => {
-        return gulp.src(process.env.SCSS_SRC + 'enhanced.scss')
-            .pipe(plugins.sass({
-                importer: plugins.sassGlobbing
-            }))
-            .pipe(plugins.postcss([
-                plugins.autoprefixer()
-            ]))
-            .pipe(gulp.dest(process.env.SCSS_DEST))
-            .on('error', plugins.log.error);
-    });
+    gulp.task('scss-minify', async () => {
+        await Promise.all(['print', 'preload', 'core', 'enhanced'].map(async (name) => {
+            const destination = plugins.path.join(process.env.SCSS_DEST, `${name}.css`);
+            const css = await plugins.fs.readFile(destination, 'utf8');
+            const processed = await plugins.postcss([
+                plugins.cssnano({preset: 'default'})
+            ]).process(css, {from: destination, to: destination});
 
-    gulp.task('scss-minify', () => {
-        return gulp.src([
-            process.env.SCSS_DEST + 'print.css',
-            process.env.SCSS_DEST + 'preload.css',
-            process.env.SCSS_DEST + 'core.css',
-            process.env.SCSS_DEST + 'enhanced.css'
-        ])
-            .pipe(plugins.postcss([
-                plugins.cssnano({
-                    preset: 'default'
-                })
-            ]))
-            .pipe(gulp.dest(process.env.SCSS_DEST))
-            .on('error', plugins.log.error);
+            await plugins.fs.writeFile(destination, processed.css);
+        }));
     });
 
     gulp.task('scss', gulp.series(

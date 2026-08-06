@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ExampleCommand extends Command {
-    protected function configure() {
+    protected function configure(): void {
         $this->setName('example');
         $this->setDescription('This is an example custom console command');
     }

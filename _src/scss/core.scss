@@ -1,10 +1,4 @@
-/* stylelint-disable no-invalid-position-at-import-rule */
-
-// Uses
-@use 'sass:math';
-
-// bootstrap
-@import 'bootstrap';
+@use 'bootstrap' as *;
 
 // The core styles are just as it sounds, These core styles work hand in hand with the preload styles.
 // We're catering for the same level of browser compatability as the preload styles define, only now we're displaying images.
@@ -19,8 +13,8 @@
 // Import your library specific core scss files here.
 // To be more specific/dry you would import all individual _core.scss styles here but it can get tedious so I've implemented globbing.
 // Rather than glob a global directory, we glob a bit more specifically in sequential order of cascade importance
-// eg. @import '../../library/patterns/components/**/_core.scss'
-// eg. @import '../../library/patterns/sections/**/_core.scss'
-// eg. @import '../../library/pages/**/_core.scss'
+// eg. @use '../../library/patterns/components/**/_core.scss'
+// eg. @use '../../library/patterns/sections/**/_core.scss'
+// eg. @use '../../library/pages/**/_core.scss'
 
-@import '../../library/patterns/components/**/_core.scss';
+@use '../../library/patterns/components/**/_core.scss';
