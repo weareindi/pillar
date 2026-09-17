@@ -1,0 +1,5 @@
+@use "sass:string";
+
+@function rgb-unwrap($color) {
+    @return string.unquote('#{red($color)}, #{green($color)}, #{blue($color)}');
+}

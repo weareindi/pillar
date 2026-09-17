@@ -5,9 +5,18 @@
 <style>{{ source('/_assets/css/preload.css', ignore_missing = true) }}</style>
 
 <noscript>
-    <link rel="stylesheet" href="{{ theme.link }}/_assets/css/core.css?v={{ version }}">
     <link rel="stylesheet" href="{{ theme.link }}/_assets/css/print.css?v={{ version }}" media="print">
 </noscript>
 
+<style id="custom-vars">
+    {{ source('_assets/css/custom-vars.css', ignore_missing=true) }}
+</style>
+
+{% if canonical is defined and canonical %}
+<link rel="canonical" href="{{ canonical|raw }}" />
+{% endif %}
+
 {# `wp_head` is used by Timber to populate Timber powered WordPress Themes #}
 {{ wp_head }}
+
+<script src="{{ theme.link }}/_assets/js/preload.js?v={{ version }}" preload></script>

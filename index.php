@@ -24,8 +24,17 @@ Pillar::addTwigGlobalContextData(new TwigGlobalContextData());
 include 'App/TwigFilters/ExampleFilter.php';
 Pillar::addTwigExtension(new ExampleFilter());
 
+include 'App/TwigFilters/WpAutoPFilter.php';
+Pillar::addTwigExtension(new WpAutoPFilter());
+
 include 'App/TwigFunctions/ExampleFunction.php';
 Pillar::addTwigExtension(new ExampleFunction());
+
+include 'App/TwigFunctions/FnFunction.php';
+Pillar::addTwigExtension(new FnFunction());
+
+include 'App/TwigFunctions/ActionFunction.php';
+Pillar::addTwigExtension(new ActionFunction());
 
 include 'App/TwigFunctions/SvgCollectionFunction.php';
 Pillar::addTwigExtension(new SvgCollectionFunction( $_ENV['SVGCOLLECTION_PATH'] ));

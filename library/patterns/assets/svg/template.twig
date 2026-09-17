@@ -1,0 +1,27 @@
+{% set svgs = svgcollection() %}
+{% if svg is defined and svgs[svg] %}
+    {#
+       Pass the 'original' flag to PHP.
+       Default to false if not defined.
+    #}
+    {{ registersvg(svg, original|default(false)) }}
+
+    {% set item = svgs[svg] %}
+    {# Calculate the ID based on the original flag #}
+    {% set symbolId = original ? item.id ~ '--original' : item.id %}
+
+    <{{ element ? element : 'span' }}
+        class="a-svg {{ svg ? 'a-svg--' ~ svg : '' }}"
+        style="padding-top: {{ item.impheight }}; aspect-ratio: {{ item.width }} / {{ item.height }};"
+        {{ fill is defined and fill ? ('color-fill="' ~ fill ~ '"')|raw : '' }}
+    >
+
+        <span class="a-svg__image a-svg__image--svg"
+            style="top: {{ item.offset.y }}; right: {{ item.offset.x }}; bottom: {{ item.offset.y }}; left: {{ item.offset.x }};">
+
+            <svg class="a-svg__sprite" viewBox="{{ item.viewbox }}" preserveAspectRatio="none" >
+                <use xlink:href="#{{ symbolId }}"></use>
+            </svg>
+        </span>
+    </{{ element ? element : 'span' }}>
+{% endif %}
