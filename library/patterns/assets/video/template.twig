@@ -1,0 +1,19 @@
+{% set ratio = 56.5 %}
+{% if width is defined and width and height is defined and height  %}
+    {% set ratio = height / width * 100 %}
+{% endif %}
+{% if id is defined and id %}
+<div class="a-video">
+    {% if type is defined and type == 'youtube' %}
+    <div class="a-video__frame" style="padding-top: {{ ratio }}%;" data-video>
+        <iframe
+            src="https://www.youtube.com/embed/{{ id }}?iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+            allowfullscreen
+            allowtransparency
+        ></iframe>
+    </div>
+    {% endif %}
+</div>
+{% endif %}

@@ -11,7 +11,7 @@
     window.ajaxUrl = '{{ ajax_url|raw }}';
 
     {# Inline Cut The Mustard Script #}
-    {{ source('_assets/js/mustard.js', ignore_missing = true) }}
+    {{ source('_assets/js/script.js', ignore_missing = true) }}
 
     {# Register service worker #}
     // if (navigator.serviceWorker) {
@@ -20,3 +20,6 @@
         // });
     // }
 </script>
+
+{# Keep svgsprite() but prepopulate icons which may only appear via lazyloaded content. DO NOT STUFF ALL ICONS IN HERE #}
+{{ svgsprite([])|raw }}

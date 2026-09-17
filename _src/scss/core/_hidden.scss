@@ -1,0 +1,5 @@
+@use "bootstrap" as *;
+
+.hidden {
+    @include hidden();
+}

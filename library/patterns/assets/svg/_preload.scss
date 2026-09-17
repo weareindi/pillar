@@ -1,0 +1,33 @@
+@mixin svg($width, $height) {
+    @include impheight($width, $height);
+
+    .a-svg__image {
+        $offset-x: -((math.div(100%, $width)));
+        $offset-y: -((math.div(100%, $height)));
+
+        top: $offset-y;
+        right: $offset-x;
+        bottom: $offset-y;
+        left: $offset-x;
+    }
+}
+
+.a-svg {
+    position: relative;
+    display: block;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.a-svg__image {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    inset: 0;
+
+    > svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}

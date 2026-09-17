@@ -2,4 +2,10 @@
 
 {% block body %}
     {{ key }} {{ key2 }}
+
+    <div class="svg">
+        {% include 'assets/svg' ignore missing with {
+            svg: 'icon--account'
+        } only %}
+    </div>
 {% endblock %}

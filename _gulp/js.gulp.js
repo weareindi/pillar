@@ -1,6 +1,7 @@
 export default function(gulp, plugins) {
     // prepare script names/filenames
     const scripts = {
+        'js-preload': 'preload.js',
         'js-script': 'script.js',
         'js-additional': 'additional.js',
         'js-threads': '**/*Thread.js',
@@ -65,6 +66,7 @@ export default function(gulp, plugins) {
 
     // register global terser task
     gulp.task('js-terser', gulp.series(
+        gulp.parallel('js-preload-terser'),
         gulp.parallel('js-script-terser'),
         gulp.parallel('js-additional-terser'),
         gulp.parallel('js-threads-terser'),

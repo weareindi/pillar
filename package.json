@@ -19,6 +19,7 @@
         "glob": "^13.0.6",
         "gulp": "^5.0.1",
         "postcss": "^8.5.26",
+        "postcss-scss": "^4.0.9",
         "sass": "^1.102.0",
         "stylelint": "^17.14.1",
         "stylelint-config-standard": "^40.0.0",
@@ -32,5 +33,9 @@
         "fetch-inject": "^3.3.1",
         "throttle-debounce": "^5.0.2",
         "vh-check": "^2.0.5"
+    },
+    "allowScripts": {
+        "@parcel/watcher@2.6.0": true,
+        "fsevents@2.3.3": true
     }
 }

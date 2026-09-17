@@ -1,0 +1,52 @@
+{% set maxWidth = attribute(_context, 'max-width') is defined ? (attribute(_context, 'max-width') + 0) : null %}
+{% set maxHeight = attribute(_context, 'max-height') is defined ? (attribute(_context, 'max-height') + 0) : null %}
+
+{% set allSizes = [] %}
+{% set filteredSizes = [] %}
+
+{% for key, size in sizes %}
+    {% if size.url is defined and size.width is defined and size.height is defined %}
+        {% set sizeWidth = size.width + 0 %}
+        {% set sizeHeight = size.height + 0 %}
+
+        {% set normalizedSize = size|merge({
+            '_width': sizeWidth,
+            '_height': sizeHeight
+        }) %}
+
+        {% set allSizes = allSizes|merge([normalizedSize]) %}
+
+        {% if (maxWidth is null or sizeWidth <= maxWidth) and (maxHeight is null or sizeHeight <= maxHeight) %}
+            {% set filteredSizes = filteredSizes|merge([normalizedSize]) %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+{# fallback: if nothing matched, use the smallest available size #}
+{% if filteredSizes is empty and allSizes is not empty %}
+    {% set filteredSizes = [allSizes|first] %}
+{% endif %}
+
+{% set srcsetParts = [] %}
+{% for size in filteredSizes %}
+    {% set srcsetParts = srcsetParts|merge([
+        size.url ~ ' ' ~ size._width ~ 'w'
+    ]) %}
+{% endfor %}
+
+{% set fallbackSrc = filteredSizes is not empty ? filteredSizes|first.url : url %}
+
+<img
+    class="a-img {{ fill is defined and fill ? 'a-img--fill' : '' }}"
+    src="{{ fallbackSrc }}"
+    {% if srcsetParts is not empty %}
+        srcset="{{ srcsetParts|join(', ') }}"
+    {% endif %}
+    sizes="{{ sizesattr is defined and sizesattr ? sizesattr : (maxWidth ? maxWidth ~ 'px' : '100vw') }}"
+    width="{{ width }}"
+    height="{{ height }}"
+    alt="{{ alt is defined and alt ? alt : '' }}"
+    loading="{{ loadingattr is defined and loadingattr ? loadingattr : 'lazy' }}"
+    fetchpriority="{{ fetchpriorityattr is defined and fetchpriorityattr ? fetchpriorityattr : 'low' }}"
+    decoding="async"
+>

@@ -1,0 +1,27 @@
+{
+    "url": "/image/2560x1440",
+    "width": "2560",
+    "height": "1440",
+    "sizes": {
+        "custom-small": {
+            "url": "/image/640x360/ff0000",
+            "width": "640",
+            "height": "360"
+        },
+        "custom-medium": {
+            "url": "/image/1280x720/ff00ff",
+            "width": "1280",
+            "height": "720"
+        },
+        "custom-large": {
+            "url": "/image/1920x1080/ffff00",
+            "width": "1920",
+            "height": "1080"
+        },
+        "custom-ultra": {
+            "url": "/image/2560x1440/00ffff",
+            "width": "2560",
+            "height": "1440"
+        }
+    }
+}

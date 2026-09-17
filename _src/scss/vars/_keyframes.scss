@@ -1,0 +1,31 @@
+@keyframes eyegrab {
+    0%,
+    90%{
+        transform: scale(0.8);
+    }
+
+    91% {
+        transform: scale(1) rotate(1deg);
+    }
+
+    92% {
+        transform: scale(1) rotate(-1deg);
+    }
+
+    93% {
+        transform: scale(1) rotate(1deg);
+    }
+
+    94% {
+        transform: scale(1) rotate(-1deg);
+    }
+
+    95% {
+        transform: scale(1) rotate(1deg);
+    }
+
+    96%,
+    100% {
+        transform: scale(0.8);
+    }
+}

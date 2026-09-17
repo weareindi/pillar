@@ -4,7 +4,10 @@ export default function(gulp, plugins) {
         const destination = plugins.path.join(process.env.SCSS_DEST, `${name}.css`);
         const result = plugins.sass.compile(source, {
             importers: [plugins.sassGlobbing],
-            loadPaths: [process.cwd()],
+            loadPaths: [
+                plugins.path.resolve(process.env.SCSS_SRC),
+                process.cwd()
+            ],
             style: 'expanded'
         });
         const processed = await plugins.postcss([
@@ -15,12 +18,12 @@ export default function(gulp, plugins) {
         await plugins.fs.writeFile(destination, processed.css);
     };
 
-    for (const name of ['print', 'preload', 'core', 'enhanced']) {
+    for (const name of ['custom-vars', 'fonts', 'core']) {
         gulp.task(`scss-${name}`, () => compile(name));
     }
 
     gulp.task('scss-minify', async () => {
-        await Promise.all(['print', 'preload', 'core', 'enhanced'].map(async (name) => {
+        await Promise.all(['custom-vars', 'fonts', 'core'].map(async (name) => {
             const destination = plugins.path.join(process.env.SCSS_DEST, `${name}.css`);
             const css = await plugins.fs.readFile(destination, 'utf8');
             const processed = await plugins.postcss([
@@ -32,7 +35,6 @@ export default function(gulp, plugins) {
     });
 
     gulp.task('scss', gulp.series(
-        gulp.parallel('scss-print', 'scss-preload', 'scss-core'),
-        gulp.parallel('scss-enhanced') // We compile enhanced after core as enhanced imports core and the task gets confused when running in parellel
+        gulp.parallel('scss-custom-vars', 'scss-fonts', 'scss-core')
     ));
 };

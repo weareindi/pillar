@@ -76,17 +76,13 @@ const plugins = {
 // tasks
 import taskdefault from './_gulp/default.gulp.js';
 import taskjs from './_gulp/js.gulp.js';
-import taskmustard from './_gulp/mustard.gulp.js';
 import taskproduction from './_gulp/production.gulp.js';
 import taskscss from './_gulp/scss.gulp.js';
-import tasksw from './_gulp/sw.gulp.js';
 import tasksync from './_gulp/sync.gulp.js';
 import taskwatch from './_gulp/watch.gulp.js';
 
 taskjs(gulp, plugins);
 taskscss(gulp, plugins);
-taskmustard(gulp, plugins);
-tasksw(gulp, plugins);
 taskwatch(gulp, plugins);
 tasksync(gulp, plugins);
 taskproduction(gulp, plugins);

@@ -1,0 +1,5 @@
+@use "sass:string";
+
+@function rgba-format($color, $alpha: 1) {
+    @return string.unquote('rgba(#{string.unquote($color)}, #{$alpha})');
+}
